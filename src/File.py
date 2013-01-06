@@ -24,8 +24,6 @@ class File(object):
             # indica que el parametro: "src" es el paath de un archivo o un directorio
             # que se desea copiar 
             if opcion == 1:
-                print src
-            
                 dst= os.path.join(dest, os.path.basename(src))
                      
                 if os.path.exists(src):
@@ -41,24 +39,17 @@ class File(object):
                 
                         sys.exit(2)
             
-                # indica que el parametro: "src" es el path de un arhivo el cual contiene
-                # los path de los archivos que se desean copiar  
-                elif opcion == 2:
-                    with open(src, 'r') as f:
-                        for path in f:
-                            self.copy(str(path).replace('\n', ''), dest, 
+            # indica que el parametro: "src" es el path de un arhivo el cual contiene
+            # los path de los archivos que se desean copiar  
+            elif opcion == 2:
+                with open(src, 'r') as f:
+                    for path in f:
+                        self.copy(str(path).replace('\n', ''), dest, 
                                       1)
-                            print str(path).replace('\n', '')
         except IOError as ex:
             print ex
             
             sys.exit(2)
-            
-        if opcion == 1 and os.path.isfile(src):
-            print 'El archivo fue copiado satisfactoriamente \n'
-            
-        elif (opcion == 1 and os.path.isdir(src)) or opcion == 2:
-            print 'Los archivos fueron copiados satisfactoriamente \n'
             
     def move(self, src, dest, opcion):
         if opcion == 1:
